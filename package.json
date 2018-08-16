@@ -21,6 +21,7 @@
     "format": "prettier-eslint --write \"src/**/*.{js,jsx,json,css,md}\""
   },
   "dependencies": {
+    "bulma": "^0.7.1",
     "gatsby": "next",
     "gatsby-plugin-google-analytics": "next",
     "gatsby-plugin-manifest": "next",
