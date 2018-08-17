@@ -38,6 +38,18 @@ const MobileMenu = styled.div`
     padding: 0 0.75em;
   }
 `;
+const NavbarBurger = styled.a`
+  color: #3273dc;
+  cursor: pointer;
+  text-decoration: none;
+  @media screen and (max-width: 600px) {
+    float: left!important;
+    margin-left: 12px;
+    width: 1%;
+    height: 16%!important;
+    }
+  }
+`;
 
 export default class Header extends React.Component {
   constructor(props) {
@@ -60,16 +72,41 @@ export default class Header extends React.Component {
     const { isActive } = this.state;
     return (
       <Container className="navbar is-transparent">
-        <div className="navbar-brand is-pulled-left">
-          <div
-            className="navbar-burger burger "
-            data-target="navbarExampleTransparentExample"
+        <NavbarBurger className="navbar-brand is-pulled-left">
+          <a
+            role="button"
+            className={isActive ? 'is-active navbar-burger' : 'navbar-burger'}
+            aria-label="menu"
+            aria-expanded="false"
+            onClick={this.toggleMobileMenu}
           >
-            <span />
-            <span />
-            <span />
-          </div>
-        </div>
+            <span aria-hidden="true" />
+            <span aria-hidden="true" />
+            <span aria-hidden="true" />
+          </a>
+        </NavbarBurger>
+        {isActive ? (
+          <MobileMenu className="is-hidden-desktop has-text-centered">
+            <aside className="menu">
+              <ul className="menu-list is-size-6">
+                <Link to="/sign-up/">
+                  <li>Sign up for free</li>
+                </Link>
+                <Link to="/">
+                  <li>Subscribe</li>
+                </Link>
+                <Link to="/login/">
+                  {' '}
+                  <li>Login</li>
+                </Link>
+                <Link to="/">
+                  {' '}
+                  <li>Help</li>
+                </Link>
+              </ul>
+            </aside>
+          </MobileMenu>
+        ) : null}
         <div id="navbarExampleTransparentExample" className="navbar-menu">
           <div className="navbar-start">
             <a className="navbar-item is-size-5 has-text-grey has-text-weight-semibolid">
@@ -79,28 +116,6 @@ export default class Header extends React.Component {
               by HTML5 UP
             </a>
           </div>
-          {isActive ? (
-            <MobileMenu className="is-hidden-desktop has-text-centered">
-              <aside className="menu">
-                <ul className="menu-list is-size-6">
-                  <Link to="/sign-up/">
-                    <li>Sign up for free</li>
-                  </Link>
-                  <Link to="/">
-                    <li>Subscribe</li>
-                  </Link>
-                  <Link to="/login/">
-                    {' '}
-                    <li>Login</li>
-                  </Link>
-                  <Link to="/">
-                    {' '}
-                    <li>Help</li>
-                  </Link>
-                </ul>
-              </aside>
-            </MobileMenu>
-          ) : null}
 
           <div className="navbar-end">
             <div className="navbar-item">
